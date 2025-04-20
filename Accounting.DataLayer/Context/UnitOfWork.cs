@@ -6,15 +6,19 @@ namespace Accounting.DataLayer.Context
 {
     public class UnitOfWork:IDisposable
     {
-        Accounting_dbEntities _context = new Accounting_dbEntities();
+        AccountingDbContext _context = new AccountingDbContext();
 
 
         #region Interfaces
 
         private ICustomersRepository _customersRepository;
-        public ICustomersRepository CustomersRepository => _customersRepository ?? (_customersRepository = new CustomersRepository(_context));
+        public ICustomersRepository CustomersRepository => _customersRepository ??
+                                                           (_customersRepository = new CustomersRepository(_context));
 
+        private Repository<Accounting> _accountingRepository;
 
+        public Repository<Accounting> AccountingRepository => _accountingRepository ??
+                                                              (_accountingRepository = new Repository<Accounting>(_context));
         #endregion
         public void Save()
         {

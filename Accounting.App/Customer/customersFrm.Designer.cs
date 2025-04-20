@@ -53,6 +53,7 @@
             this.addCustomerBtn.Size = new System.Drawing.Size(49, 61);
             this.addCustomerBtn.Text = "افزودن";
             this.addCustomerBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.addCustomerBtn.Click += new System.EventHandler(this.addCustomerBtn_Click);
             // 
             // editCustomerBtn
             // 
@@ -64,6 +65,7 @@
             this.editCustomerBtn.Size = new System.Drawing.Size(53, 61);
             this.editCustomerBtn.Text = "ویرایش";
             this.editCustomerBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.editCustomerBtn.Click += new System.EventHandler(this.editCustomerBtn_Click);
             // 
             // removeCustomerBtn
             // 
@@ -152,7 +154,7 @@
             // 
             // Column2
             // 
-            this.Column2.DataPropertyName = "Mobile";
+            this.Column2.DataPropertyName = "Phone";
             this.Column2.HeaderText = "موبایل";
             this.Column2.MinimumWidth = 6;
             this.Column2.Name = "Column2";

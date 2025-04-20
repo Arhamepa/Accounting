@@ -1,18 +1,20 @@
 ﻿using Accounting.DataLayer.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Accounting.ViewModels.CustomerVm;
 
 namespace Accounting.DataLayer.Services
 {
     public class CustomersRepository : ICustomersRepository
     {
 
-        private Accounting_dbEntities _context;
+        private AccountingDbContext _context;
 
-        public CustomersRepository(Accounting_dbEntities context)
+        public CustomersRepository(AccountingDbContext context)
         {
             _context = context;
         }
@@ -26,6 +28,30 @@ namespace Accounting.DataLayer.Services
         public Customers GetCustomerById(int customerId)
         {
             return _context.Customers.Find(customerId);
+        }
+
+        public List<CustomerViewModel> GetCustomersName(string filter = "")
+        {
+            if (filter == null)
+            {
+              return _context.Customers.Select(n => new CustomerViewModel()
+              {
+                  Id = n.CustomerID,
+                  FullName = n.FullName
+              }).ToList();
+            }
+
+            return _context.Customers.Where(c => c.FullName.Contains(filter)).Select(n => new CustomerViewModel()
+            {
+                Id = n.CustomerID,
+                FullName = n.FullName
+
+            }).ToList();
+        }
+
+        public int GetCustomerIdByName(string name)
+        {
+           return _context.Customers.First(c => c.FullName == name).CustomerID;
         }
 
         public List<Customers> GetCustomers()
@@ -46,17 +72,16 @@ namespace Accounting.DataLayer.Services
         }
         public bool UpdateCustomer(Customers customer)
         {
-            try
+            var local = _context.Set<Customers>().Local.FirstOrDefault(c => c.CustomerID == customer.CustomerID);
+            if (local != null)
             {
+                _context.Entry(local).State = EntityState.Detached;
+            }
+           
                 _context.Entry(customer).State = System.Data.Entity.EntityState.Modified;
                 return true;
-            }
-            catch
-            {
-                return false;
-            }
         }
-
+        
         public bool RemoveCustomer(Customers customer)
         {
             try
