@@ -33,6 +33,7 @@
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.customersBtn = new System.Windows.Forms.ToolStripButton();
+            this.newAccountingBtn = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.SuspendLayout();
@@ -61,7 +62,8 @@
             // 
             this.toolStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.customersBtn});
+            this.customersBtn,
+            this.newAccountingBtn});
             this.toolStrip2.Location = new System.Drawing.Point(0, 31);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.Size = new System.Drawing.Size(782, 67);
@@ -78,6 +80,18 @@
             this.customersBtn.Text = "مشتری";
             this.customersBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.customersBtn.Click += new System.EventHandler(this.customersBtn_Click);
+            // 
+            // newAccountingBtn
+            // 
+            this.newAccountingBtn.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.newAccountingBtn.Image = global::Accounting.App.Properties.Resources._1370791030_credit_card;
+            this.newAccountingBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.newAccountingBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.newAccountingBtn.Name = "newAccountingBtn";
+            this.newAccountingBtn.Size = new System.Drawing.Size(88, 64);
+            this.newAccountingBtn.Text = "تراکنش جدید";
+            this.newAccountingBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.newAccountingBtn.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // Form1
             // 
@@ -108,6 +122,7 @@
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
         private System.Windows.Forms.ToolStrip toolStrip2;
         private System.Windows.Forms.ToolStripButton customersBtn;
+        private System.Windows.Forms.ToolStripButton newAccountingBtn;
     }
 }
 

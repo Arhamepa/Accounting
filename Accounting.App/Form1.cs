@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Accounting.App.Accounting;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,6 +27,12 @@ namespace Accounting.App
         {
             customersFrm customerFrm = new customersFrm();
             customerFrm.ShowDialog();
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            newAccountingFrm newAccountingFrm = new newAccountingFrm();
+            newAccountingFrm.ShowDialog();
         }
     }
 }

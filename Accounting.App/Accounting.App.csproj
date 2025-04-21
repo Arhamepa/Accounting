@@ -53,10 +53,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="customersFrm.cs">
+    <Compile Include="Accounting\newAccountingFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="customersFrm.Designer.cs">
+    <Compile Include="Accounting\newAccountingFrm.Designer.cs">
+      <DependentUpon>newAccountingFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\addOrEditFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customer\addOrEditFrm.Designer.cs">
+      <DependentUpon>addOrEditFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\customersFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customer\customersFrm.Designer.cs">
       <DependentUpon>customersFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
@@ -67,7 +79,43 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="customersFrm.resx">
+    <Compile Include="Validator\BaseValidator.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Validator\BaseValidator.designer.cs">
+      <DependentUpon>BaseValidator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Validator\CustomValidator.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Validator\CustomValidator.designer.cs">
+      <DependentUpon>CustomValidator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Validator\RangeValidator.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Validator\RangeValidator.designer.cs">
+      <DependentUpon>RangeValidator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Validator\RegularExpressionValidator.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Validator\RegularExpressionValidator.designer.cs">
+      <DependentUpon>RegularExpressionValidator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Validator\RequiredFieldValidator.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Validator\RequiredFieldValidator.designer.cs">
+      <DependentUpon>RequiredFieldValidator.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Accounting\newAccountingFrm.resx">
+      <DependentUpon>newAccountingFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer\addOrEditFrm.resx">
+      <DependentUpon>addOrEditFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer\customersFrm.resx">
       <DependentUpon>customersFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
@@ -155,6 +203,20 @@
       <Project>{21DB45BD-954B-4B5A-8E16-FA146560C1E7}</Project>
       <Name>Accounting.DataLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Accounting.ViewModels\Accounting.ViewModels.csproj">
+      <Project>{513289f2-fe75-4af7-9fa1-3986fda8706f}</Project>
+      <Name>Accounting.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AccountingCommon\AccountingCommon.csproj">
+      <Project>{D225F931-7C2D-4408-B3B4-B0B8C8282749}</Project>
+      <Name>AccountingCommon</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\no-profile-image.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

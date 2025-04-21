@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Accounting.ViewModels.CustomerVm;
 
 namespace Accounting.DataLayer.Repositories
 {
@@ -7,6 +8,8 @@ namespace Accounting.DataLayer.Repositories
         List<Customers> GetCustomers();
         IEnumerable<Customers> GetCustomerBySearch(string param);
         Customers GetCustomerById(int id);
+        List<CustomerViewModel> GetCustomersName(string filter="");
+        int GetCustomerIdByName(string name);
 
         bool AddCustomer(Customers customer);
         bool UpdateCustomer(Customers customer);
