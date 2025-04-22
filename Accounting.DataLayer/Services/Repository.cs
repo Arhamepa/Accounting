@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
@@ -17,16 +18,17 @@ namespace Accounting.DataLayer.Services
             _dbSet = _context.Set<T>();
         }
 
-        public virtual IEnumerable GetAll(Expression<Func<T, bool>> expression = null)
-        {
-            IQueryable<T> query = _dbSet;
-            if (expression != null)
-            {
-              query =  query.Where(expression);
-            }
+         public virtual IEnumerable<T> GetAll(Expression<Func<T,bool>> where=null)
+       {
+           IQueryable<T> query = _dbSet;
 
-            return query.ToList();
-        }
+           if (where != null)
+           {
+               query = query.Where(where);
+           }
+
+           return query.ToList();
+       }
         
 
         

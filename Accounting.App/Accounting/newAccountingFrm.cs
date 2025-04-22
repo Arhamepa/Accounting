@@ -14,7 +14,8 @@ namespace Accounting.App.Accounting
 {
     public partial class newAccountingFrm : Form
     {
-        private UnitOfWork _context = new UnitOfWork();
+        public int AcountId = 0;
+        private UnitOfWork _context;
         public newAccountingFrm()
         {
             InitializeComponent();
@@ -27,8 +28,30 @@ namespace Accounting.App.Accounting
 
         private void newAccountingFrm_Load(object sender, EventArgs e)
         {
+            _context = new UnitOfWork();
             customersGridView.AutoGenerateColumns = false;
             customersGridView.DataSource = _context.CustomersRepository.GetCustomersName();
+            if (AcountId != 0)
+            {
+                
+                this.Text= "ویرایش";
+                saveBtn.Text= "ویرایش";
+                var account = _context.AccountingRepository.GetById(AcountId);
+                txtAmount.Text = account.Amount.ToString();
+                txtDescription.Text = account.Description.ToString();
+                
+                if (account.TypeId == 1)
+                {
+                    withrawRb.Checked=true;
+                }
+                else
+                {
+                    payRb.Checked =true;
+                }
+                txtNameBox.Text= _context.CustomersRepository.GetCustomerNameById(account.CustomerId);
+                
+                _context.Dispose();
+            }
         }
 
         private void accSearchByNameBtn_TextChanged(object sender, EventArgs e)
@@ -44,6 +67,7 @@ namespace Accounting.App.Accounting
 
         private void saveBtn_Click(object sender, EventArgs e)
         {
+             _context = new UnitOfWork();
             if (BaseValidator.IsFormValid(this.components))
             {
                 if (payRb.Checked || withrawRb.Checked)
@@ -52,12 +76,21 @@ namespace Accounting.App.Accounting
                     {
                         TypeId = (payRb.Checked)? 2:1,
                         DateTime = DateTime.Now,
-                        Description = txtDescriptionLabel.Text,
+                        Description = txtDescription.Text,
                         Amount = int.Parse(txtAmount.Value.ToString()),
                         CustomerId = _context.CustomersRepository.GetCustomerIdByName(txtNameBox.Text)
                     };
-                    _context.AccountingRepository.Add(accounting);
+                    if (AcountId == 0)
+                    {
+                        _context.AccountingRepository.Add(accounting);
+                    }
+                    else
+                    {
+                        accounting.ID = AcountId;
+                        _context.AccountingRepository.Update(accounting);
+                    }
                     _context.Save();
+                    _context.Dispose();
                     DialogResult=DialogResult.OK;
                 }
                 else

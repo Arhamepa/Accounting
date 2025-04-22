@@ -19,6 +19,11 @@ namespace Accounting.DataLayer.Context
 
         public Repository<Accounting> AccountingRepository => _accountingRepository ??
                                                               (_accountingRepository = new Repository<Accounting>(_context));
+        private Repository<Login> _loginRepository;
+
+        public Repository<Login> LoginRepository =>
+            _loginRepository ?? (_loginRepository = new Repository<Login>(_context));
+
         #endregion
         public void Save()
         {
