@@ -54,6 +54,11 @@ namespace Accounting.DataLayer.Services
            return _context.Customers.First(c => c.FullName == name).CustomerID;
         }
 
+        public string GetCustomerNameById(int Id)
+        {
+            return _context.Customers.Find(Id).FullName;
+        }
+
         public List<Customers> GetCustomers()
         {
             return _context.Customers.ToList();
